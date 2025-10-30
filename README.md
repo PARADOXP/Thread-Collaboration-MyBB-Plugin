@@ -50,11 +50,20 @@ This plugin empowers communities to:
 
 ## 🚀 Installation
 
-1. Upload the plugin files:
-/collaboration_chats.php
-/collaboration_draft.php
-/collaboration_edit_history.php
-/inc/languages/thread_collaboration.lang.php
-/inc/languages/admin/thread_collaboration.lang.php
-/inc/plugins/thread_collaboration.php
-/inc/plugins/Thread_Collaboration
+1. Upload the plugin files:<br />
+/collaboration_chats.php<br />
+/collaboration_draft.php<br />
+/collaboration_edit_history.php<br />
+/inc/languages/thread_collaboration.lang.php<br />
+/inc/languages/admin/thread_collaboration.lang.php<br />
+/inc/plugins/thread_collaboration.php<br />
+/inc/plugins/Thread_Collaboration<br />
+
+
+## License
+
+This plugin is licensed under the GNU General Public License v3.0 or later. See the LICENSE file for details.
+
+Badge example:
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
