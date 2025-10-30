@@ -1,0 +1,98 @@
+<table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="margin-top: 15px;">
+<tr>
+<td class="thead" colspan="2"><strong>{$lang->request_statistics}</strong></td>
+</tr>
+<tr>
+<td class="trow1" style="padding: 15px;">
+    <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td class="tcat" colspan="2"><strong>{$lang->request_summary}</strong></td>
+        </tr>
+        <tr>
+            <td class="trow1" style="width: 50%; padding: 10px;">
+                <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                    <tr>
+                        <td style="width: 60%;"><strong>{$lang->total_requests_sent}:</strong></td>
+                        <td style="width: 40%;">{$total_requests_sent}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{$lang->pending_requests_sent}:</strong></td>
+                        <td><span class="pending-count">{$pending_requests_sent}</span></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="trow1" style="width: 50%; padding: 10px;">
+                <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                    <tr>
+                        <td style="width: 60%;"><strong>{$lang->approved_requests_sent}:</strong></td>
+                        <td style="width: 40%;"><span class="approved-count">{$approved_requests_sent}</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>{$lang->rejected_requests_sent}:</strong></td>
+                        <td><span class="rejected-count">{$rejected_requests_sent}</span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td class="tcat" colspan="2"><strong>{$lang->requests_received_summary}</strong></td>
+        </tr>
+        <tr>
+            <td class="trow1" style="width: 50%; padding: 10px;">
+                <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                    <tr>
+                        <td style="width: 60%;"><strong>{$lang->total_requests_received}:</strong></td>
+                        <td style="width: 40%;">{$total_requests_received}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{$lang->pending_requests_received}:</strong></td>
+                        <td><span class="pending-count">{$pending_requests_received}</span></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="trow1" style="width: 50%; padding: 10px;">
+                <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                    <tr>
+                        <td style="width: 60%;"><strong>{$lang->approved_requests_received}:</strong></td>
+                        <td style="width: 40%;"><span class="approved-count">{$approved_requests_received}</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>{$lang->rejected_requests_received}:</strong></td>
+                        <td><span class="rejected-count">{$rejected_requests_received}</span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td class="tcat"><strong>{$lang->roles_requested}</strong></td>
+        </tr>
+        <tr>
+            <td class="trow1" style="padding: 10px;">
+                <div class="tags-container">
+                    {$roles_requested_list}
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+    <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="width: 100%;">
+        <tr>
+            <td class="tcat"><strong>{$lang->threads_requested}</strong></td>
+        </tr>
+        <tr>
+            <td class="trow1" style="padding: 10px;">
+                <div class="threads-container">
+                    {$threads_requested_list}
+                </div>
+            </td>
+        </tr>
+    </table>
+</td>
+</tr>
+</table>

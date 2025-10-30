@@ -1,0 +1,52 @@
+<!-- Edit Collaborator Modal -->
+<div id="editCollaboratorModal" class="collaboration-modal" style="display: none;">
+	<div class="collaboration-modal-content">
+		<div class="collaboration-modal-header">
+			<h3>Edit Collaborator Role</h3>
+			<span class="collaboration-modal-close">&times;</span>
+		</div>
+		<div class="collaboration-modal-body">
+			<form id="editCollaboratorForm" method="post" action="showthread.php">
+				<input type="hidden" name="my_post_key" value="{$mybb->post_code}" />
+				<input type="hidden" name="action" value="edit_collaborator" />
+				<input type="hidden" name="tid" value="{$thread['tid']}" />
+				<input type="hidden" name="edit_uid" id="edit_uid" value="" />
+				<input type="hidden" name="edit_type" id="edit_type" value="" />
+				<input type="hidden" name="edit_request_id" id="edit_request_id" value="" />
+				
+				<div class="tborder">
+					<div class="trow1" style="padding: 10px;">
+						<label><strong>Collaborator:</strong> <span id="edit_username"></span></label>
+					</div>
+					<div class="trow1" style="padding: 10px;">
+						<label><strong>Role:</strong></label>
+						<input type="text" name="edit_role" id="edit_role" class="textbox collaborator_role" style="width: 200px;" placeholder="Select a role or type custom..." />
+					</div>
+					<div class="trow1" style="padding: 10px;">
+						<label class="icon-field-label"><strong>Icon:</strong></label>
+						<input type="text" name="edit_icon" id="edit_icon" class="textbox" style="width: 150px;" placeholder="fas fa-icon" />
+						<br /><small>CSS class for the role icon (e.g., 'fas fa-pen', 'fas fa-palette')</small>
+					</div>
+					<div class="trow1" style="padding: 10px;">
+						<label><input type="checkbox" id="enable_multiple_roles" class="enable_multiple_roles" /> <strong>Enable Multiple Roles</strong></label>
+						<br /><small>Allow this collaborator to have multiple roles</small>
+					</div>
+					<div class="trow1" style="padding: 10px;">
+						<div class="additional-roles" style="display: none;">
+							<div class="additional-role-row">
+								<label>Additional Role: <input type="text" name="edit_additional_role[]" class="textbox collaborator_additional_role" style="width: 200px;" placeholder="Select additional role or type custom..." /></label>
+								<label class="additional-icon-field-label" style="display: none;">Icon: <input type="text" name="edit_additional_role_icon[]" class="textbox collaborator_additional_role_icon" style="width: 120px;" placeholder="fas fa-icon" /></label>
+								<button type="button" class="add_additional_role">Add More</button>
+								<button type="button" class="remove_additional_role" style="display: none;">Remove</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="collaboration-modal-footer" style="padding: 15px; text-align: center; border-top: 1px solid #dee2e6; background: white;">
+			<button type="submit" form="editCollaboratorForm" class="button" style="background: #28a745; color: white; border: 1px solid #28a745; padding: 8px 16px; border-radius: 4px; font-weight: bold;">Save Changes</button>
+			<button type="button" class="button" id="cancelEdit" style="background: #6c757d; color: white; border: 1px solid #6c757d; padding: 8px 16px; border-radius: 4px; margin-left: 10px;">Cancel</button>
+		</div>
+	</div>
+</div>

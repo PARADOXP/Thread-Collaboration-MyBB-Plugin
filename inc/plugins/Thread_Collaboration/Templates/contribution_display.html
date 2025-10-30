@@ -1,0 +1,14 @@
+<div class="collaboration-contributions-box">
+    <div class="contributions-header">
+        <i class="fas fa-users-cog"></i>
+        Collaboration Contributions
+        <span class="contributions-badge">{$contributor_count} contributor{$contributor_plural}</span>
+        <button class="collaboration-contributions-toggle" id="collaboration_contributions_{$post_id}_img" onclick="collaborationContributions.toggle('collaboration_contributions_{$post_id}')" title="Expand/Collapse">
+            <i class="fas fa-chevron-down" id="collaboration_contributions_{$post_id}_icon"></i>
+        </button>
+    </div>
+    
+    <div class="collaboration-contributions-content" id="collaboration_contributions_{$post_id}_e" style="{$collapsed_style}">
+        {$contribution_items}
+    </div>
+</div>

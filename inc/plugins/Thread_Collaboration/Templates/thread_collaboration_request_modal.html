@@ -1,0 +1,40 @@
+<div id="collaboration-modal" class="collaboration-modal" style="display: none;">
+    <div class="collaboration-modal-content">
+        <div class="collaboration-modal-header">
+            <h3>Request to Collaborate</h3>
+        </div>
+        <div class="collaboration-modal-body">
+            <form id="collaboration-request-form" method="post" action="showthread.php?tid={$thread_tid}&action=request_collaboration">
+                <table class="tborder" style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr>
+                            <td class="trow1" style="padding: 10px; width: 30%; vertical-align: top;"><strong>Role:</strong></td>
+                            <td class="trow1" style="padding: 10px;">
+                                <input type="text" name="request_role" id="request_role" class="textbox request_role" style="width: 100%;" placeholder="Select a role or type custom..." required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="trow1" style="padding: 10px; width: 30%; vertical-align: top;"><strong>Icon:</strong></td>
+                            <td class="trow1" style="padding: 10px;">
+                                <input type="text" name="request_role_icon" id="request_role_icon" class="textbox request_role_icon" style="width: 100%;" placeholder="fas fa-icon" />
+                                <div id="icon_display" style="color: #666; font-style: italic; margin-top: 5px; display: none;">Icon will be auto-filled based on role selection</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="trow1" style="padding: 10px; width: 30%; vertical-align: top;"><strong>Message:</strong></td>
+                            <td class="trow1" style="padding: 10px;">
+                                <textarea name="request_message" id="request_message" class="textarea" style="width: 100%; height: 100px; resize: vertical;" placeholder="Explain why you want to collaborate and what you can contribute..."></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="trow1" colspan="2" style="padding: 15px; text-align: center;">
+                                <input type="submit" class="button" value="Submit Request" style="margin-right: 10px;" />
+                                <button type="button" class="button" onclick="closeCollaborationModal()">Cancel</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

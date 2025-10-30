@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{$lang->collaboration_chat_title} - {$thread_subject}</title>
+    {$headerinclude}
+</head>
+
+<body class="chat-page">
+    {$header}
+
+    <div class="collaboration-chat-container {$chat_view_expanded}">
+        <div class="collaboration-chat-header">
+            <div class="chat-header-main">
+                <div>
+                    <h1><i class="fas fa-comments"></i> {$lang->collaboration_chat_title}</h1>
+                    <p>{$lang->collaboration_chat_subtitle} - <strong>{$thread_subject}</strong></p>
+                </div>
+                <div class="chat-header-actions">
+                    {$draft_button_html}
+                    <button id="chat-toggle-btn" class="chat-toggle-btn {$chat_view_expanded}" title="Toggle Chat View">
+                        <i class="fas fa-arrow-right-from-bracket"></i>
+                    </button>
+                    <a href="showthread.php?tid={$tid}" class="return-to-thread-btn">
+                        <i class="fas fa-arrow-left"></i> Return to Thread
+                    </a>
+                </div>
+            </div>
+
+            <div class="chat-header-info">
+                <div class="online-users-panel">
+                    <span class="online-count" id="online-count">0</span> {$lang->collaboration_chat_online}
+                </div>
+                <div class="collaboration-info-panel">
+                    <span class="collaborators-count" id="collaborators-count">0</span> Collaborators
+                </div>
+            </div>
+        </div>
+
+        <div class="collaboration-chat-room">
+            <div class="chat-main-area">
+                <div class="chat-messages-container" id="chat-messages">
+                    {$messages_html}
+                    <div class="chat-typing-indicator" id="typing-indicator">
+                        <div class="typing-user-info">
+                            <div class="typing-avatar" id="typing-avatar">
+                                <img src="{$mybb->user['avatar']}" alt="{$mybb->user['username']}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="typing-avatar-fallback" style="display: none;">{$mybb->user['username'][0]}</div>
+                            </div>
+                            <div class="typing-text-container">
+                                <span class="typing-username" id="typing-username">{$mybb->user['username']}</span>
+                                <span class="typing-status" id="typing-status">is typing...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <!-- MyCode Toolbar -->
+                    <div class="chat-mycode-toolbar" id="mycode-toolbar">
+                        <div class="mycode-buttons">
+                            <!-- Text Formatting -->
+                            <button type="button" class="mycode-btn" data-tag="b" title="Bold"><i class="fas fa-bold"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="i" title="Italic"><i class="fas fa-italic"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="u" title="Underline"><i class="fas fa-underline"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="s" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+                            <div class="mycode-separator"></div>
+                            
+                            <!-- Links and Media -->
+                            <button type="button" class="mycode-btn" data-tag="url" title="Link"><i class="fas fa-link"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="img" title="Image"><i class="fas fa-image"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="color" title="Color"><i class="fas fa-palette"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="size" title="Size"><i class="fas fa-text-height"></i></button>
+                            <div class="mycode-separator"></div>
+                            
+                            <!-- Code and Quotes -->
+                            <button type="button" class="mycode-btn" data-tag="code" title="Code"><i class="fas fa-code"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="quote" title="Quote"><i class="fas fa-quote-left"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="list" title="List"><i class="fas fa-list"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="spoiler" title="Spoiler"><i class="fas fa-eye-slash"></i></button>
+                            <div class="mycode-separator"></div>
+                            
+                            <!-- Alignment -->
+                            <button type="button" class="mycode-btn" data-tag="align" title="Align Left"><i class="fas fa-align-left"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="center" title="Align Center"><i class="fas fa-align-center"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="right" title="Align Right"><i class="fas fa-align-right"></i></button>
+                            <div class="mycode-separator"></div>
+                            
+                            <!-- Other -->
+                            <button type="button" class="mycode-btn" data-tag="hr" title="Horizontal Rule"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="table" title="Table"><i class="fas fa-table"></i></button>
+                            <button type="button" class="mycode-btn" data-tag="clear" title="Clear Formatting"><i class="fas fa-eraser"></i></button>
+                        </div>
+                        <div class="mycode-view-toggle">
+                            <button type="button" class="mycode-btn mycode-toggle-btn" id="toggle-view-btn" title="Toggle Source/Formatted View">
+                                <i class="fas fa-code"></i> Source
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <form class="chat-input-form" id="chat-form">
+                        <!-- Formatted view (contenteditable div) -->
+                        <div class="chat-input chat-input-formatted" id="chat-input-formatted"
+                            contenteditable="true" data-placeholder="{$lang->collaboration_chat_message_placeholder}"
+                            style="display: block;"></div>
+                        
+                        <!-- Source view (textarea) -->
+                        <textarea class="chat-input chat-input-source" id="chat-input-source"
+                            placeholder="{$lang->collaboration_chat_message_placeholder}" rows="1"
+                            maxlength="1000" style="display: none;"></textarea>
+                        
+                        <button type="submit" class="chat-send-btn" id="chat-send">
+                            <i class="fas fa-paper-plane"></i> {$lang->collaboration_chat_send}
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="chat-pagination-container" id="pagination-container">
+                    <div class="chat-mode-controls">
+                        <button class="chat-mode-btn" id="live-mode-btn" data-mode="1">
+                            <i class="fas fa-broadcast-tower"></i> Live Chat
+                        </button>
+                        <button class="chat-mode-btn active" id="pagination-mode-btn" data-mode="0">
+                            <i class="fas fa-list"></i> View Pages
+                        </button>
+                    </div>
+                    
+                    <div class="chat-pagination" id="chat-pagination">
+                        <div class="pagination-info">
+                            <span>Page {$current_page} of {$total_pages} ({$total_messages} messages)</span>
+                        </div>
+                        <div class="pagination-links">
+                            <a href="collaboration_chats.php?tid={$tid}&live=0&page=1" class="pagination-link first">First</a>
+                            <a href="collaboration_chats.php?tid={$tid}&live=0&page={$current_page-1}" class="pagination-link prev">Previous</a>
+                            
+                            <!-- Page numbers will be generated by JavaScript -->
+                            <div class="pagination-numbers" id="pagination-numbers"></div>
+                            
+                            <!-- Go to page button (shown when many pages) -->
+                            <button class="pagination-link go-to-page-btn" id="go-to-page-btn" style="display: none;">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            
+                            <a href="collaboration_chats.php?tid={$tid}&live=0&page={$current_page+1}" class="pagination-link next">Next</a>
+                            <a href="collaboration_chats.php?tid={$tid}&live=0&page={$total_pages}" class="pagination-link last">Last</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-users"></i> Online Now</h3>
+                    <div class="online-users-list" id="online-users-list">
+                        <div class="loading-users">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-user-friends"></i> Collaborators</h3>
+                    <div class="collaborators-list" id="collaborators-list">
+                        <div class="loading-collaborators">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-info-circle"></i> Thread Info</h3>
+                    <div class="thread-info-panel">
+                        <div class="info-item">
+                            <strong>Thread:</strong> <a href="showthread.php?tid={$tid}"
+                                target="_blank">{$thread_subject}</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Your Role:</strong> <span id="user-role">Loading...</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Messages:</strong> <span id="total-messages">0</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-online-indicator" id="online-indicator">
+        <i class="fas fa-circle"></i> {$lang->collaboration_chat_online}
+    </div>
+
+    <button class="chat-scroll-to-bottom" id="scroll-to-bottom" title="Scroll to bottom">
+        <i class="fas fa-arrow-down"></i>
+    </button>
+
+    <script src="{$mybb->asset_url}/inc/plugins/Thread_Collaboration/Assets/collaboration_chat.js"></script>
+
+    <script>
+        // Initialize chat
+        const chatConfig = {
+            tid: {$tid},
+            lastMessageId: {$last_message_id},
+            refreshInterval: 3000, // 3 seconds
+            typingTimeout: 2000, // 2 seconds
+            maxMessageLength: 1000,
+            currentPage: {$current_page},
+            totalPages: {$total_pages},
+            totalMessages: {$total_messages}
+        };
+
+        // Initialize chat functionality
+        if (typeof CollaborationChat !== 'undefined') {
+            window.collaborationChat = new CollaborationChat(chatConfig);
+        }
+    </script>
+
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Go to page modal -->
+    <div class="go-to-page-modal" id="go-to-page-modal">
+        <div class="go-to-page-content">
+            <div class="go-to-page-header">
+                <h3>Go to page</h3>
+                <button class="go-to-page-close" id="go-to-page-close">&times;</button>
+            </div>
+            <div class="go-to-page-body">
+                <div class="go-to-page-input-group">
+                    <input type="number" id="go-to-page-input" min="1" max="{$total_pages}" placeholder="Page number">
+                    <div class="go-to-page-controls">
+                        <button class="go-to-page-btn go-to-page-decrease" id="go-to-page-decrease">-</button>
+                        <button class="go-to-page-btn go-to-page-increase" id="go-to-page-increase">+</button>
+                </div>
+                    <button class="go-to-page-go-btn" id="go-to-page-go">Go</button>
+                </div>
+                <div class="go-to-page-info">
+                    <span>Enter a page number between 1 and {$total_pages}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {$footer}
+</body>
+
+</html>

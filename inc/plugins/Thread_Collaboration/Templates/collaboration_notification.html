@@ -1,0 +1,11 @@
+<div class="notification-header">
+    <div class="notification-title">
+        <i class="notification-icon {$icon_class}"></i>
+        {$title}
+    </div>
+    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<div class="notification-message">{$message}</div>
+<div class="notification-progress"></div>

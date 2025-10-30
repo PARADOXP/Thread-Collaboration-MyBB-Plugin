@@ -1,0 +1,254 @@
+{
+  "group": {
+    "name": "thread_collaboration",
+    "title": "Thread Collaboration Settings",
+    "description": "Settings for the Thread Collaboration plugin."
+  },
+  "settings": {
+    "allowed_groups": {
+      "title": "Allowed Usergroups",
+      "description": "Select which usergroups can use thread collaboration features.",
+      "optionscode": "groupselect",
+      "value": "2,3,4",
+      "disporder": 1
+    },
+    "allowed_forums": {
+      "title": "Allowed Forums",
+      "description": "Select forums where Thread Collaboration will work. Choose \"All Forums\" to enable in all forums, \"Select forums\" to choose specific forums, or \"None\" to disable.",
+      "optionscode": "forumselect",
+      "value": -1,
+      "disporder": 2
+    },
+    "moderator_usergroups": {
+      "title": "Moderator & Management Usergroups",
+      "description": "Usergroups with collaboration management permissions. These users can: 1) Manage collaborations (invite/remove) on any thread they can moderate, 2) View pending collaboration invitations, 3) Edit posts in collaboration threads, 4) Have their posts protected from editing by non-moderators. Typically include Moderators, Super Moderators, and Administrators.",
+      "optionscode": "groupselect",
+      "value": "3,4,6",
+      "disporder": 3
+    },
+    "enable_chat_page": {
+      "title": "Enable Chat Page",
+      "description": "Enable the collaborative chat page feature where users can have real-time discussions about the thread.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 4
+    },
+    "enable_draft_page": {
+      "title": "Enable Draft Page",
+      "description": "Enable the collaborative draft page feature where users can collaboratively write and edit posts before publishing.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 5
+    },
+    "chat_allowed_forums": {
+      "title": "Chat Page Allowed Forums",
+      "description": "Select forums where the Chat Page will be available. Choose \"All Forums\" to enable in all forums, \"Select forums\" to choose specific forums, or \"None\" to disable.",
+      "optionscode": "forumselect",
+      "value": -1,
+      "disporder": 6
+    },
+    "draft_allowed_forums": {
+      "title": "Draft Page Allowed Forums",
+      "description": "Select forums where the Draft Page will be available. Choose \"All Forums\" to enable in all forums, \"Select forums\" to choose specific forums, or \"None\" to disable.",
+      "optionscode": "forumselect",
+      "value": -1,
+      "disporder": 7
+    },
+    "default_roles": {
+      "title": "Default Roles",
+      "description": "Default roles available for selection (one per line, format: Role Name|Icon Code).",
+      "optionscode": "textarea",
+      "value": "Writer|fas fa-pen\nArtist|fas fa-palette\nGraphic Designer|fas fa-brush\nScript Writer|fas fa-scroll\nTranslator|fas fa-language\nAnnouncer|fas fa-bullhorn",
+      "disporder": 8
+    },
+    "owner_default_icon": {
+      "title": "Default Owner Icon (CSS class)",
+      "description": "CSS class for the default icon shown with the Owner role (e.g. 'fas fa-crown').",
+      "optionscode": "text",
+      "value": "fas fa-crown",
+      "disporder": 9
+    },
+    "show_icons": {
+      "title": "Show Role Icons",
+      "description": "Display icons next to role names.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 10
+    },
+    "show_avatars": {
+      "title": "Show User Avatars",
+      "description": "Display user avatars in collaboration lists, invitations, and requests. When disabled, only usernames will be shown.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 11
+    },
+    "max_collaborators": {
+      "title": "Maximum Collaborators",
+      "description": "Maximum number of collaborators allowed per thread (0 for unlimited).",
+      "optionscode": "numeric",
+      "value": "10",
+      "disporder": 12
+    },
+    "max_threads_per_user": {
+      "title": "Maximum Threads Per User",
+      "description": "Maximum number of threads a user can be a collaborator in (0 for unlimited).",
+      "optionscode": "numeric",
+      "value": "3",
+      "disporder": 13
+    },
+    "max_roles_per_user": {
+      "title": "Maximum Roles Per User",
+      "description": "Maximum number of different roles a user can have across all threads (0 for unlimited).",
+      "optionscode": "numeric",
+      "value": "3",
+      "disporder": 14
+    },
+    "invitation_system": {
+      "title": "Enable Invitation System",
+      "description": "Enable the collaboration invitation system where users must accept invitations before becoming collaborators.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 15
+    },
+    "enable_requests": {
+      "title": "Enable Collaboration Requests",
+      "description": "Allow users to request to collaborate on threads they do not own.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 16
+    },
+    "invitation_expiry": {
+      "title": "Invitation Expiry Days",
+      "description": "Number of days after which pending invitations automatically expire (0 for no expiry).",
+      "optionscode": "numeric",
+      "value": "30",
+      "disporder": 17
+    },
+    "request_expiry": {
+      "title": "Request Expiry Days",
+      "description": "Number of days after which pending collaboration requests automatically expire (0 for no expiry).",
+      "optionscode": "numeric",
+      "value": "30",
+      "disporder": 18
+    },
+    "auto_cleanup": {
+      "title": "Auto Cleanup Expired Invitations",
+      "description": "Automatically remove expired invitations from the database.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 19
+    },
+    "auto_cleanup_requests": {
+      "title": "Auto Cleanup Expired Requests",
+      "description": "Automatically remove expired collaboration requests from the database.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 20
+    },
+    "pm_notifications": {
+      "title": "PM Notifications",
+      "description": "Send private message notifications to collaborators when they are added.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 21
+    },
+    "pm_on_update": {
+      "title": "PM Notifications on Update",
+      "description": "Send private message notifications when collaborator roles are updated (in addition to when they are first added).",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 22
+    },
+    "request_notifications": {
+      "title": "Request PM Notifications",
+      "description": "Send private message notifications for collaboration requests.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 23
+    },
+    "custom_pm_message": {
+      "title": "Custom PM Message Template",
+      "description": "Customize the private message sent to collaborators. Use {1} for inviter username, {2} for thread subject, {3} for role, {4} for thread link, {5} for UCP collaboration invitations URL. Leave empty to use default message.",
+      "optionscode": "textarea",
+      "value": "",
+      "disporder": 24
+    },
+    "enable_collaborator_editing": {
+      "title": "Enable Collaborator Post Editing",
+      "description": "Allow thread collaborators to edit each other's posts within the thread.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 25
+    },
+    "allow_edit_any_post": {
+      "title": "Allow Collaborators To Edit Any Posts",
+      "description": "If enabled, collaborators can edit any posts in threads they collaborate on (edit permission only). If disabled, collaborators can only edit posts by other collaborators and the thread owner.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 26
+    },
+    "require_approval_for_protected": {
+      "title": "Require approval for protected owners",
+      "description": "If enabled, edits by non-protected collaborators to posts owned by protected collaborators will be saved as drafts pending owner approval.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 27
+    },
+    "show_in_postbit": {
+      "title": "Show Role in Postbit",
+      "description": "Display collaborator roles in user postbit when they are collaborators in the thread.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 28
+    },
+    "show_owner_role_mode": {
+      "title": "Owner Role Visibility Always",
+      "description": "If Yes, always show thread owner's role. If No, show only when collaborators exist.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 29
+    },
+    "show_owner_role_form_always": {
+      "title": "Show Owner Role Form Always",
+      "description": "When enabled, the 'Set your role' form will always be visible for thread owners, even when there are no collaborators. When disabled, it only shows when collaborators exist.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 30
+    },
+    "show_pending_invitations": {
+      "title": "Show Pending Invitations",
+      "description": "Display pending collaboration invitations in the thread collaboration info box.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 31
+    },
+    "pending_invitations_usergroups": {
+      "title": "Pending Invitations Viewing Usergroups",
+      "description": "Usergroups that can view pending collaboration invitations in the thread collaboration info box. Thread owners can always see pending invitations for their own threads regardless of this setting.",
+      "optionscode": "groupselect",
+      "value": "2,3,4,6",
+      "disporder": 32
+    },
+    "manager_invite_as_owner": {
+      "title": "Manager Invite as Owner",
+      "description": "When enabled, Management Usergroups users can choose to invite collaborators as the thread owner instead of themselves. This helps maintain the appearance that invitations come from the thread creator.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 33
+    },
+    "enable_user_settings": {
+      "title": "Enable User Collaboration Settings",
+      "description": "Allow thread creators to configure collaboration request settings in their User Control Panel.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 34
+    },
+    "enable_tabbed_usercp": {
+      "title": "Enable Tabbed User CP Interface",
+      "description": "When enabled, the User CP collaboration page will use a modern tabbed interface with Settings, Statistics, and Other tabs. When disabled, it uses the traditional single-page layout.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 35
+    }
+  }
+}

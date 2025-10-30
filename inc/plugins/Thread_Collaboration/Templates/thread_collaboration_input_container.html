@@ -1,0 +1,35 @@
+<tr>
+<td class="trow2"><strong>Collaborators</strong></td>
+<td class="trow2">
+    <link rel="stylesheet" href="{$mybb->asset_url}/jscripts/select2/select2.css?ver=1807">
+    <script type="text/javascript" src="{$mybb->asset_url}/jscripts/select2/select2.min.js?ver=1806"></script>
+    {$manager_invite_as_owner_toggle}
+    <div class="thread_collaboration_fields" data-default-roles='{$default_roles_json}'>
+        {$collaborator_fields_content}
+    </div>
+    <div id="collaborator-template" style="display:none;">
+        <div class="thread_collaboration_field">
+            <label>Username: <input type="text" name="collaborator_username[]" class="textbox collaborator_username" style="width: 200px;" /></label>
+            <label>Role: <input type="text" name="collaborator_role[]" class="textbox collaborator_role" style="width: 200px;" /></label>
+            <label class="icon-field-label" style="display: none;">Icon: <input type="text" name="collaborator_role_icon[]" class="textbox collaborator_role_icon" style="width: 120px;" placeholder="fas fa-icon" /></label>
+            
+            <div class="multiple-roles-section" style="margin-top: 10px;">
+                <label><input type="checkbox" class="enable_multiple_roles" /> Click if you want to select or have multiple roles</label>
+                
+                <div class="additional-roles" style="display: none; margin-top: 10px;">
+                    <div class="additional-role-row">
+                        <label>Additional Role: <input type="text" name="collaborator_additional_role[]" class="textbox collaborator_additional_role" style="width: 200px;" /></label>
+                        <label class="additional-icon-field-label" style="display: none;">Icon: <input type="text" name="collaborator_additional_role_icon[]" class="textbox collaborator_additional_role_icon" style="width: 120px;" placeholder="fas fa-icon" /></label>
+                        <button type="button" class="add_additional_role">Add More</button>
+                        <button type="button" class="remove_additional_role">Remove</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="button" class="add_collaborator_field">Add More</button>
+            <button type="button" class="remove_collaborator_field">Remove</button>
+        </div>
+    </div>
+    {$collaboration_javascript}
+</td>
+</tr>

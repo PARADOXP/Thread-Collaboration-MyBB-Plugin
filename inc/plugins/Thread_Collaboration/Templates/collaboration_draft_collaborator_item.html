@@ -1,0 +1,27 @@
+<div class="collaborator-item">
+    <div class="collaborator-main-info">
+        <div class="collaborator-header" style>
+            <div style="display: flex; align-items: center;">
+                <div class="collaborator-avatar">
+                    {$avatar_html}
+                </div>
+                <div class="collaborator-name">{$username}</div>
+            </div>
+            <div style="margin-inline-start: 3em;">
+                <div class="collaborator-roles">{$roles_html}</div>
+            </div>
+        </div>
+        <div class="collaborator-contribution">
+            <div class="contribution-stats">
+                <span class="contribution-text">{$total_contributions} characters contributed</span>
+                <span class="contribution-percentage">({$contribution_percentage}%)</span>
+            </div>
+            <div class="contribution-bar">
+                <div class="contribution-fill" style="width: {$contribution_percentage}%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="collaborator-status">
+        <div class="status-indicator online"></div>
+    </div>
+</div>

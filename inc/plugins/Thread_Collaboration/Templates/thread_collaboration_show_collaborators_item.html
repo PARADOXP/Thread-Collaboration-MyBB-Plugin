@@ -1,0 +1,33 @@
+<div class="collaborator-card">
+    <div class="collaborator-main">
+        <div class="collaborator-avatar">
+            {$collaborator_avatar}
+        </div>
+        <div class="collaborator-info">
+            <div class="collaborator-username">
+                {$collaborator_username_link}
+            </div>
+            <div class="collaborator-meta">
+                <span class="collaborator-joined">
+                    <i class="fas fa-calendar-alt"></i>
+                    {$collaborator_joined_date}
+                </span>
+                <span class="collaborator-method">
+                    <i class="fas fa-sign-in-alt"></i>
+                    {$collaborator_joined_via}
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="collaborator-role-section">
+        <div class="collaborator-role">
+            {$collaborator_role_icon_html}
+            <span class="role-text">{$collaborator_role}</span>
+        </div>
+    </div>
+    
+    <div class="collaborator-actions">
+        {$collaborator_actions}
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="draft-item-header">
+    <div class="draft-item-title">{$draft_subject}</div>
+    <div class="draft-item-status {$draft_status}">{$draft_status}</div>
+</div>
+<div class="draft-item-preview">{$draft_preview}</div>
+<div class="draft-item-meta">
+    <span>Created by {$created_by} • {$created_date}</span>
+    <div class="draft-item-actions">
+        <button class="draft-action-btn draft-collaborators-btn" onclick="collaborationDraft.showCollaboratorsPopup({$draft_id})" title="View Collaborators">
+            <i class="fas fa-users"></i> Collaborators
+        </button>
+        <button class="draft-action-btn draft-edit-btn" onclick="collaborationDraft.editDraft({$draft_id})">
+            <i class="fas fa-edit"></i> Edit
+        </button>
+        {$publish_button}
+        <button class="draft-action-btn draft-delete-btn" onclick="collaborationDraft.deleteDraft({$draft_id})">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+    </div>
+</div>

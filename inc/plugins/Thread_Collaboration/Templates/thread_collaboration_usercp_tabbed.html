@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>{$mybb->settings['bbname']} - Collaboration Management</title>
+{$headerinclude}
+</head>
+<body>
+{$header}
+<table width="100%" border="0" align="center">
+<tr>
+{$usercpnav}
+<td valign="top">
+    <!-- Tab Navigation -->
+    <div class="collaboration-tabs">
+        <ul class="collaboration-tab-nav">
+            <li><a href="#invitations" class="collaboration-tab-link active" data-tab="invitations">Invitations</a></li>
+            <li><a href="#settings" class="collaboration-tab-link" data-tab="settings">Settings</a></li>
+            <li><a href="#stats" class="collaboration-tab-link" data-tab="stats">Statistics</a></li>
+        </ul>
+    </div>
+
+    <!-- Tab Content Container -->
+    <div class="collaboration-tab-container">
+        <!-- Invitations Tab -->
+        <div id="invitations" class="collaboration-tab-content active">
+            <h3>Invitations & Requests</h3>
+            
+            <!-- Pending Edit Requests Section -->
+            {$pending_edits_section}
+            
+            <!-- Collaboration Invitations Section -->
+            <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="margin-bottom: 20px;">
+                <tr>
+                    <td class="thead" colspan="2"><strong>Collaboration Invitations</strong></td>
+                </tr>
+                {$invitations_content}
+            </table>
+            
+            <!-- Collaboration Requests Section -->
+            <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="margin-bottom: 20px;">
+                <tr>
+                    <td class="thead" colspan="2"><strong>Collaboration Requests</strong></td>
+                </tr>
+                {$requests_content}
+            </table>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="collaboration-tab-content">
+            <h3>Collaboration Settings</h3>
+            {$collaboration_settings_section}
+        </div>
+
+        <!-- Statistics Tab -->
+        <div id="stats" class="collaboration-tab-content">
+            <h3>Collaboration Statistics</h3>
+            <div class="collaboration-stats-grid">
+                {$comprehensive_stats_content}
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+</table>
+
+{$thread_collaboration_modal}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab functionality with smooth sliding animations
+    const tabLinks = document.querySelectorAll('.collaboration-tab-link');
+    const tabContents = document.querySelectorAll('.collaboration-tab-content');
+    let isAnimating = false;
+    
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Prevent multiple clicks during animation
+            if (isAnimating) return;
+            
+            const targetTab = this.getAttribute('data-tab');
+            const targetContent = document.getElementById(targetTab);
+            const currentActiveContent = document.querySelector('.collaboration-tab-content.active');
+            
+            // If clicking the same tab, do nothing
+            if (this.classList.contains('active')) return;
+            
+            isAnimating = true;
+            
+            // Remove active class from all links
+            tabLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // If there's a currently active content, slide it out first
+            if (currentActiveContent && currentActiveContent !== targetContent) {
+                // Slide out current content
+                currentActiveContent.classList.add('slide-out');
+                currentActiveContent.classList.remove('active');
+                
+                // Wait for slide-out animation to complete
+                setTimeout(() => {
+                    currentActiveContent.classList.remove('slide-out');
+                    
+                    // Slide in target content
+                    targetContent.classList.add('slide-in');
+                    targetContent.classList.add('active');
+                    
+                    // Remove slide-in class after animation
+                    setTimeout(() => {
+                        targetContent.classList.remove('slide-in');
+                        isAnimating = false;
+                    }, 300); // Match CSS transition duration
+                }, 300); // Match CSS transition duration
+            } else {
+                // No current active content, just show target content
+                targetContent.classList.add('slide-in');
+                targetContent.classList.add('active');
+                
+                setTimeout(() => {
+                    targetContent.classList.remove('slide-in');
+                    isAnimating = false;
+                }, 300);
+            }
+        });
+    });
+    
+    // Handle URL hash for direct tab access
+    const hash = window.location.hash;
+    if (hash) {
+        const targetLink = document.querySelector(`a[href="${hash}"]`);
+        if (targetLink) {
+            targetLink.click();
+        }
+    }
+});
+</script>
+
+{$footer}
+</body>
+</html>

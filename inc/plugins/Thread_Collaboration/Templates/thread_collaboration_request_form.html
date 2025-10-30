@@ -1,0 +1,28 @@
+<div class="thread_collaboration_request_form">
+    <h3>Request to Collaborate</h3>
+    <form method="post" action="showthread.php?tid={$thread_id}&action=request_collaboration">
+        <table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder">
+            <tr>
+                <td class="tcat" colspan="2"><strong>Collaboration Request Details</strong></td>
+            </tr>
+            <tr>
+                <td class="trow1" style="width: 30%;"><strong>Role:</strong></td>
+                <td class="trow1">
+                    <input type="text" name="request_role" id="request_role" class="textbox" style="width: 300px;" placeholder="Enter your desired role" required />
+                </td>
+            </tr>
+            <tr>
+                <td class="trow1"><strong>Message:</strong></td>
+                <td class="trow1">
+                    <textarea name="request_message" class="textarea" style="width: 100%; height: 100px;" placeholder="Explain why you want to collaborate and what you can contribute..." required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="trow1" colspan="2" style="text-align: center;">
+                    <input type="submit" name="submit_request" value="Submit Request" class="button" />
+                    <input type="button" value="Cancel" class="button" onclick="closeCollaborationModal()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
