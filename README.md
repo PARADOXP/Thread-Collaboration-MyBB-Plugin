@@ -8,7 +8,7 @@
   <a href="#"><img src="https://img.shields.io/badge/MyBB-1.8.x-blue?style=for-the-badge"></a>
   <a href="#"><img src="https://img.shields.io/badge/Plugin-Thread%20Collaboration-purple?style=for-the-badge"></a>
   <a href="#"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Status-Stable-success?style=for-the-badge"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Status-Dev-success?style=for-the-badge"></a>
   <a href="#"><img src="https://img.shields.io/badge/Contributions-Welcome-ff69b4?style=for-the-badge"></a>
 </p>
 
