@@ -1,5 +1,14 @@
 <?php
-// Original plugin file temporarily preserved as requested.
+/*
+Plugin Name: Thread Collaboration
+Description: Adds thread collaboration features to MyBB.
+Author: PARADOXP
+Version: 1.3
+License: GNU General Public License v3.0 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
+*/
+
+// SPDX-License-Identifier: GPL-3.0-or-later
 // Disallow direct access to this file for security reasons
 if(!defined("IN_MYBB"))
 {
