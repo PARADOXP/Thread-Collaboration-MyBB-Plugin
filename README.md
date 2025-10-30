@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://i.ibb.co/ZzNHkzKK/d25872c7-6a96-45bf-8da5-fd74691ae502.jpg" width="100%" alt="Thread Collaboration Banner">
+<img src="https://i.ibb.co/ZzNHkzKK/d25872c7-6a96-45bf-8da5-fd74691ae502.jpg" alt="Thread Collaboration Banner">
 
 # 💎 **T H R E A D &nbsp; C O L L A B O R A T I O N** 💎  
 ### _Collaborate. Create. Build Threads Together._
