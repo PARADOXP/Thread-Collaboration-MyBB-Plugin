@@ -233,9 +233,9 @@ function thread_collaboration_info()
     return array(
         "name"            => "Thread Collaboration",
         "description"    => $description, // Updated with status/links
-        "website"        => "https://github.com/yourusername/mybb-thread-collaboration",
+        "website"        => "https://mybb.epizy.com",
         "author"        => "PRADIP",
-        "authorsite"    => "https://yourwebsite.com",
+        "authorsite"    => "https://mybb.epizy.com",
         "version"        => "1.3",
         "guid"            => "",
         "compatibility" => "18*"
