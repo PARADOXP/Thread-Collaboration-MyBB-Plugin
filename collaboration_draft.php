@@ -758,6 +758,7 @@ if ($mybb->get_input('action') == 'publish_draft') {
 
         if (!$draft) {
             ob_clean();
+            header('Content-Type: application/json');
         echo json_encode(array('success' => false, 'error' => 'Draft not found.'));
         exit;
     }

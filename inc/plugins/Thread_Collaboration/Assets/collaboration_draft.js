@@ -753,7 +753,16 @@ class CollaborationDraft {
                 if (data.success) {
                     this.currentDraftId = draftId;
                     document.getElementById('draft-subject').value = data.draft.subject;
-                    document.getElementById('draft-content').value = data.draft.content;
+
+                    // Use innerHTML for contenteditable div, and value for textarea
+                    const contentFormatted = document.getElementById('draft-content-formatted');
+                    const contentSource = document.getElementById('draft-content-source');
+                    if (contentFormatted) {
+                        contentFormatted.innerHTML = data.draft.content;
+                    }
+                    if (contentSource) {
+                        contentSource.value = data.draft.content;
+                    }
 
                     // Initialize content baseline to prevent double-counting contributions
                     this.initializeContentBaseline();
@@ -859,17 +868,28 @@ class CollaborationDraft {
             fetch(`collaboration_draft.php?action=publish_draft&tid=${this.tid}&draft_id=${this.currentDraftId}`, {
                 method: 'POST'
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        this.showNotification('Draft Published', 'Your draft has been published to the thread.', 'success', 8000);
-                        this.cancelDraft();
-                        this.loadDrafts();
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.success) {
+                            this.showNotification('Draft Published', 'Your draft has been published to the thread.', 'success', 8000);
+                            this.cancelDraft();
+                            this.loadDrafts();
 
-                        // Switch to Archive tab to show the published draft
-                        this.switchTab('archive');
-                    } else {
-                        this.showNotification('Publish Failed', data.error || 'Failed to publish draft.', 'error', 10000);
+                            // Switch to Archive tab to show the published draft
+                            this.switchTab('archive');
+                        } else {
+                            this.showNotification('Publish Failed', data.error || 'Failed to publish draft.', 'error', 10000);
+                        }
+                    } catch (error) {
+                        this.showNotification('Publish Failed', 'Received an invalid response from the server.', 'error', 10000);
+                        console.error('Invalid JSON response:', text);
                     }
                 })
                 .catch(error => {
@@ -883,13 +903,24 @@ class CollaborationDraft {
             fetch(`collaboration_draft.php?action=publish_draft&tid=${this.tid}&draft_id=${draftId}`, {
                 method: 'POST'
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        this.showNotification('Draft Published', 'Your draft has been published to the thread.', 'success', 8000);
-                        this.loadDrafts();
-                    } else {
-                        this.showNotification('Publish Failed', data.error || 'Failed to publish draft.', 'error', 10000);
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.success) {
+                            this.showNotification('Draft Published', 'Your draft has been published to the thread.', 'success', 8000);
+                            this.loadDrafts();
+                        } else {
+                            this.showNotification('Publish Failed', data.error || 'Failed to publish draft.', 'error', 10000);
+                        }
+                    } catch (error) {
+                        this.showNotification('Publish Failed', 'Received an invalid response from the server.', 'error', 10000);
+                        console.error('Invalid JSON response:', text);
                     }
                 })
                 .catch(error => {
