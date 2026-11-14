@@ -1,0 +1,15 @@
+<tr class="trow1">
+        <td style="padding: 8px;">
+            <a href="showthread.php?tid={$edit_tid}">{$edit_thread_subject}</a>
+        </td>
+        <td style="padding: 8px;">
+            {$edit_editor_link}
+        </td>
+        <td style="padding: 8px;" class="smalltext">
+            {$edit_preview}
+        </td>
+        <td style="padding: 8px;">
+            <a href="usercp.php?action=collaboration_invitations&approve_edit={$edit_id}&my_post_key={$mybb->post_code}" class="button" style="background: #28a745; color: white; padding: 4px 8px; text-decoration: none; border-radius: 3px; margin-right: 5px;">Approve</a>
+            <a href="usercp.php?action=collaboration_invitations&reject_edit={$edit_id}&my_post_key={$mybb->post_code}" class="button" style="background: #dc3545; color: white; padding: 4px 8px; text-decoration: none; border-radius: 3px;">Reject</a>
+        </td>
+    </tr>

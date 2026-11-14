@@ -1,0 +1,28 @@
+<div class="edit-history-item" data-history-id="{$history_id}">
+    <div class="edit-history-header">
+        <div class="edit-info">
+            <span class="edit-type edit-type-{$edit_type}">
+                <i class="{$edit_type_icon}"></i> {$edit_type_text}
+            </span>
+            <span class="edit-user">
+                {$lang->edit_history_by} <strong>{$username}</strong>
+            </span>
+            <span class="edit-date" title="{$formatted_datetime}">
+                {$formatted_date}
+            </span>
+        </div>
+        <div class="edit-actions">
+            {$restore_button}
+            <button class="button view-diff-btn" data-history-id="{$history_id}" title="{$lang->edit_history_view_changes}">
+                <i class="fas fa-eye"></i> {$lang->edit_history_view_diff}
+            </button>
+        </div>
+    </div>
+    {$edit_reason}
+    <div class="edit-content-preview">
+        <div class="content-preview">
+            <strong>{$lang->edit_history_content_preview}</strong>
+            <div class="preview-text">{$content_preview}</div>
+        </div>
+    </div>
+</div>

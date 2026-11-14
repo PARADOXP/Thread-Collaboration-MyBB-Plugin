@@ -1,0 +1,29 @@
+<div class="pending-request-container">
+    <div class="pending-request-header thead">
+        <i class="fas fa-clock" style="color: #ffc107; margin-right: 8px;"></i>
+        <strong>Pending Collaboration Request</strong>
+        <span class="float_right">{$request_date}</span>
+    </div>
+    <div class="pending-request-content" style="padding: 12px;">
+        <div style="margin-bottom: 10px;">
+            <strong>Role:</strong> 
+            <span class="default-role {$role_class}" style="display: inline-block; padding: 2px 8px; background: #e9ecef; border-radius: 12px; font-size: 12px; margin-left: 5px;">
+                {$request_role}{$request_role_icon_html}
+            </span>
+        </div>
+        {$message_display}
+        <div style="color: #6c757d; font-size: 13px; margin-bottom: 10px;">
+            <i class="fas fa-info-circle" style="margin-right: 5px;"></i>
+            Your request is pending approval from the thread owner.
+        </div>
+        <div style="text-align: right;">
+            <a href="showthread.php?tid={$thread['tid']}&action=revoke_request&request_id={$request_id}" 
+               class="button revoke-request-btn" 
+               style="background: #dc3545; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-size: 12px; border: none;"
+               onclick="return confirm('Are you sure you want to revoke your collaboration request? You will be able to submit a new request with a different role.')">
+                <i class="fas fa-times" style="margin-right: 5px;"></i>
+                Revoke Request
+            </a>
+        </div>
+    </div>
+</div>

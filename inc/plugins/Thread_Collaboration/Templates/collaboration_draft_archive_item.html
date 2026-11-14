@@ -1,0 +1,17 @@
+<div class="archive-item-header">
+    <div class="archive-item-title">{$draft_subject}</div>
+    <div class="archive-item-status {$draft_status}">{$draft_status}</div>
+</div>
+<div class="archive-item-preview">{$draft_preview}</div>
+<div class="archive-item-meta">
+    <span>Created by {$created_by} • {$created_date}</span>
+    {$archived_info}
+    <div class="archive-item-actions">
+        <button class="draft-action-btn draft-edit-btn" onclick="collaborationDraft.editDraft({$draft_id})">
+            <i class="fas fa-edit"></i> Edit
+        </button>
+        <button class="draft-action-btn draft-delete-btn" onclick="collaborationDraft.deleteDraft({$draft_id})">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+    </div>
+</div>

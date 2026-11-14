@@ -1,0 +1,16 @@
+<div class="archive-item-header">
+    <div class="archive-item-title">{$draft_subject}</div>
+    <div class="archive-item-status">Published</div>
+</div>
+<div class="archive-item-preview">{$draft_preview}</div>
+<div class="archive-item-meta">
+    <span>Published by {$created_by} • {$published_date}</span>
+    <div class="archive-item-actions">
+        <button class="archive-action-btn archive-view-btn" onclick="collaborationDraft.viewPublishedDraft({$draft_id})">
+            <i class="fas fa-eye"></i> View
+        </button>
+        <button class="archive-action-btn archive-delete-btn" onclick="collaborationDraft.deleteDraft({$draft_id})">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+    </div>
+</div>

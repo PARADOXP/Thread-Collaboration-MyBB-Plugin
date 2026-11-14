@@ -1,0 +1,149 @@
+<!-- start: thread_collaboration_comprehensive_stats -->
+<div class="comprehensive-collaboration-stats">
+    <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Collaboration Statistics Dashboard</h2>
+    
+    <!-- INVITER STATS SECTION -->
+    <div class="stats-section" style="margin-bottom: 30px;">
+        <h3 style="background: #007bff; color: white; padding: 10px; border-radius: 5px 5px 0 0; margin: 0;">
+            <i class="fas fa-user-plus"></i> Inviter Statistics (What You've Sent/Invited)
+        </h3>
+        <div style="border: 1px solid #007bff; border-top: none; padding: 15px; border-radius: 0 0 5px 5px;">
+            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Total Invitations Sent:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=sent" class="stat-link">{$total_invitations_sent}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Pending Invitations:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=pending_sent" class="stat-link pending">{$pending_invitations_sent}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Accepted Invitations:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=accepted_sent" class="stat-link accepted">{$accepted_invitations_sent}</a>
+                    </div>
+                </div>
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Declined Invitations:</strong> 
+                        <a href="#" onclick="MyBB.popupWindow('/usercp.php?action=collaboration_invitations&modal=declined_invitations'); return false;" class="stat-link declined">{$declined_invitations_sent}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Total Collaborators Gained:</strong> 
+                        <a href="#" onclick="MyBB.popupWindow('/usercp.php?action=collaboration_invitations&modal=total_collaborators_gained'); return false;" class="stat-link">{$total_collaborators_gained}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Unique Roles Assigned:</strong> 
+                        <a href="#" onclick="MyBB.popupWindow('/usercp.php?action=collaboration_invitations&modal=roles_assigned'); return false;" class="stat-link">{$unique_roles_assigned}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-item" style="margin-top: 15px;">
+                <strong>Threads with Collaborators:</strong> 
+                <a href="usercp.php?action=collaboration_invitations&view=threads_with_collaborators" class="stat-link">{$unique_threads_with_collaborators}</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- INVITEE STATS SECTION -->
+    <div class="stats-section" style="margin-bottom: 30px;">
+        <h3 style="background: #28a745; color: white; padding: 10px; border-radius: 5px 5px 0 0; margin: 0;">
+            <i class="fas fa-envelope-open"></i> Invitee Statistics (Where You've Been Invited)
+        </h3>
+        <div style="border: 1px solid #28a745; border-top: none; padding: 15px; border-radius: 0 0 5px 5px;">
+            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Total Invitations Received:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=received" class="stat-link">{$total_invitations_received}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Pending Invitations:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=pending_received" class="stat-link pending">{$pending_invitations_received}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Accepted Invitations:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=accepted_received" class="stat-link accepted">{$accepted_invitations_received}</a>
+                    </div>
+                </div>
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Declined Invitations:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=declined_received" class="stat-link declined">{$declined_invitations_received}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Unique Inviters:</strong> 
+                        <a href="#" onclick="MyBB.popupWindow('/usercp.php?action=collaboration_invitations&modal=unique_inviters'); return false;" class="stat-link">{$unique_inviters}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- REQUESTER STATS SECTION -->
+    <div class="stats-section" style="margin-bottom: 30px;">
+        <h3 style="background: #ffc107; color: #333; padding: 10px; border-radius: 5px 5px 0 0; margin: 0;">
+            <i class="fas fa-handshake"></i> Requester Statistics (Where You've Requested to Collaborate)
+        </h3>
+        <div style="border: 1px solid #ffc107; border-top: none; padding: 15px; border-radius: 0 0 5px 5px;">
+            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Total Requests Sent:</strong> 
+                        <a href="usercp.php?action=collaboration_invitations&view=total_requests_sent" class="stat-link">{$total_requests_sent}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Pending Requests:</strong> 
+                        <a href="usercp.php?action=collaboration_requests&view=pending" class="stat-link pending">{$pending_requests_sent}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Approved Requests:</strong> 
+                        <a href="usercp.php?action=collaboration_requests&view=approved" class="stat-link accepted">{$approved_requests_sent}</a>
+                    </div>
+                </div>
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Rejected Requests:</strong> 
+                        <a href="usercp.php?action=collaboration_requests&view=rejected" class="stat-link declined">{$rejected_requests_sent}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Unique Thread Owners:</strong> 
+                        <a href="usercp.php?action=collaboration_requests&view=unique_owners" class="stat-link">{$unique_thread_owners}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- COLLABORATOR STATS SECTION -->
+    <div class="stats-section" style="margin-bottom: 30px;">
+        <h3 style="background: #6f42c1; color: white; padding: 10px; border-radius: 5px 5px 0 0; margin: 0;">
+            <i class="fas fa-users"></i> Collaborator Statistics (Where You Are/Were a Collaborator)
+        </h3>
+        <div style="border: 1px solid #6f42c1; border-top: none; padding: 15px; border-radius: 0 0 5px 5px;">
+            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Total Collaborations:</strong> 
+                        <a href="usercp.php?action=collaboration_collaborations&view=all" class="stat-link">{$total_collaborations}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Unique Roles:</strong> 
+                        <a href="usercp.php?action=collaboration_collaborations&view=roles" class="stat-link">{$unique_collaboration_roles}</a>
+                    </div>
+                </div>
+                <div class="stats-column">
+                    <div class="stat-item">
+                        <strong>Active Collaborations:</strong> 
+                        <a href="usercp.php?action=collaboration_collaborations&view=active" class="stat-link">{$active_collaborations}</a>
+                    </div>
+                    <div class="stat-item">
+                        <strong>Forums Collaborated:</strong> 
+                        <a href="usercp.php?action=collaboration_collaborations&view=forums" class="stat-link">{$forums_collaborated}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: thread_collaboration_comprehensive_stats -->

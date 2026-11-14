@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$lang->edit_history_title} - {$thread_subject}</title>
+    {$headerinclude}
+    <link rel="stylesheet" href="{$mybb->asset_url}/inc/plugins/Thread_Collaboration/Assets/collaboration.css">
+</head>
+<body>
+    {$header}
+    
+    <div class="collaboration-edit-history-container">
+        <div class="collaboration-edit-history-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h2><i class="fas fa-history"></i> {$lang->edit_history_title}</h2>
+                    <p class="thread-info">
+                        <strong>{$lang->edit_history_thread}</strong> <a href="showthread.php?tid={$tid}">{$thread_subject}</a><br>
+                        <strong>{$lang->edit_history_post_id}</strong> #{$pid}
+                    </p>
+                </div>
+                <div class="header-actions">
+                    <a href="showthread.php?tid={$tid}&pid={$pid}#pid{$pid}" class="button return-to-post-btn">
+                        <i class="fas fa-arrow-left"></i> {$lang->edit_history_return_to_post}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collaboration-edit-history-content">
+            {$edit_history_content}
+        </div>
+    </div>
+
+    <!-- Diff Viewer Modal -->
+    <div id="diff-modal" class="collaboration-modal" style="display: none;">
+        <div class="collaboration-modal-content diff-modal-content">
+            <div class="collaboration-modal-header">
+                <h3><i class="fas fa-code-branch"></i> {$lang->edit_history_changes_comparison}</h3>
+                <button class="collaboration-modal-close" onclick="closeDiffModal()">&times;</button>
+            </div>
+            <div class="collaboration-modal-body">
+                <div class="diff-viewer">
+                    <div class="diff-header">
+                        <div class="diff-version diff-old">
+                            <h4>{$lang->edit_history_previous_version}</h4>
+                            <span class="diff-meta" id="diff-old-meta"></span>
+                        </div>
+                        <div class="diff-version diff-new">
+                            <h4>{$lang->edit_history_new_version}</h4>
+                            <span class="diff-meta" id="diff-new-meta"></span>
+                        </div>
+                    </div>
+                    <div class="diff-content" id="diff-content">
+                        <!-- Diff content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            <div class="collaboration-modal-footer">
+                <button class="button" onclick="closeDiffModal()">{$lang->edit_history_close}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Confirmation Modal -->
+    <div id="restore-modal" class="collaboration-modal" style="display: none;">
+        <div class="collaboration-modal-content">
+            <div class="collaboration-modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> {$lang->edit_history_confirm_restore}</h3>
+                <button class="collaboration-modal-close" onclick="closeRestoreModal()">&times;</button>
+            </div>
+            <div class="collaboration-modal-body">
+                <p>{$lang->edit_history_restore_warning}</p>
+                <p><strong>{$lang->edit_history_restore_warning_detail}</strong></p>
+                <div class="restore-preview" id="restore-preview">
+                    <!-- Preview will be loaded here -->
+                </div>
+            </div>
+            <div class="collaboration-modal-footer">
+                <form method="post" action="collaboration_edit_history.php?pid={$pid}&tid={$tid}">
+                    <input type="hidden" name="action" value="restore">
+                    <input type="hidden" name="history_id" id="restore-history-id" value="">
+                    <input type="hidden" name="my_post_key" value="{$mybb->post_code}">
+                    <button type="button" class="button" onclick="closeRestoreModal()">{$lang->edit_history_cancel}</button>
+                    <button type="submit" class="button restore-confirm-btn">{$lang->edit_history_yes_restore}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{$mybb->asset_url}/inc/plugins/Thread_Collaboration/Assets/edit_history.js"></script>
+
+    {$footer}
+</body>
+</html>

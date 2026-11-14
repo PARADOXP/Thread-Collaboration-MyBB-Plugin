@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{$lang->collaboration_draft_title} - {$thread_subject}</title>
+    {$headerinclude}
+</head>
+
+<body class="draft-page">
+    {$header}
+
+    <div class="collaboration-draft-container {$draft_view_expanded}">
+        <div class="collaboration-draft-header">
+            <div class="draft-header-main">
+                <div>
+                    <h1><i class="fas fa-edit"></i> {$lang->collaboration_draft_title}</h1>
+                    <p>{$lang->collaboration_draft_subtitle} - <strong>{$thread_subject}</strong></p>
+                </div>
+                <div class="draft-header-actions">
+                    {$chat_button_html}
+                    <button id="draft-toggle-btn" class="draft-toggle-btn {$draft_view_expanded}" title="Toggle Draft View">
+                        <i class="fas fa-arrow-right-from-bracket"></i>
+                    </button>
+                    <a href="showthread.php?tid={$tid}" class="return-to-thread-btn">
+                        <i class="fas fa-arrow-left"></i> Return to Thread
+                    </a>
+                </div>
+            </div>
+
+            <div class="draft-header-info">
+                <div class="online-users-panel">
+                    <span class="online-count" id="online-count">0</span> Online
+                </div>
+                <div class="collaboration-info-panel">
+                    <span class="collaborators-count" id="collaborators-count">0</span> Collaborators
+                </div>
+            </div>
+            
+            <!-- Draft Navigation Tabs -->
+            <div class="draft-navigation-tabs">
+                <button class="draft-tab-btn active" id="create-draft-tab" data-tab="create-draft">
+                    <i class="fas fa-plus"></i> Create Draft
+                </button>
+                <button class="draft-tab-btn" id="drafts-tab" data-tab="drafts">
+                    <i class="fas fa-edit"></i> Drafts
+                </button>
+                <button class="draft-tab-btn" id="edit-logs-tab" data-tab="edit-logs">
+                    <i class="fas fa-history"></i> Edit Logs
+                </button>
+                <button class="draft-tab-btn" id="archive-tab" data-tab="archive">
+                    <i class="fas fa-archive"></i> Archive
+                </button>
+            </div>
+        </div>
+
+        <div class="collaboration-draft-room">
+            <div class="draft-main-area">
+                <!-- Create Draft Section -->
+                <div class="create-draft-container" id="create-draft-container">
+                    <div class="create-draft-welcome" id="create-draft-welcome">
+                        <div class="welcome-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3>Create New Draft</h3>
+                        <p>Start writing your collaborative post with your team</p>
+                        <button class="new-draft-btn" id="new-draft-btn">
+                            <i class="fas fa-plus"></i> {$lang->collaboration_draft_new_draft}
+                        </button>
+                    </div>
+                    
+                    <!-- Draft Editor (hidden by default) -->
+                    <div class="draft-editor" id="draft-editor" style="display: none;">
+                        <div class="draft-editor-header">
+                            <input type="text" class="draft-subject-input" id="draft-subject" placeholder="{$lang->collaboration_draft_subject_placeholder}">
+                            <div class="draft-editor-actions">
+                                <button class="draft-save-btn" id="draft-save-btn">
+                                    <i class="fas fa-save"></i> {$lang->collaboration_draft_save}
+                                </button>
+                                <button class="draft-publish-btn" id="draft-publish-btn">
+                                    <i class="fas fa-paper-plane"></i> {$lang->collaboration_draft_publish}
+                                </button>
+                                <button class="draft-cancel-btn" id="draft-cancel-btn">
+                                    <i class="fas fa-times"></i> {$lang->collaboration_draft_cancel}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="draft-editor-content">
+                            <div class="draft-toolbar">
+                                <!-- Text Formatting -->
+                                <button class="draft-tool-btn" data-tag="b" title="Bold">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="i" title="Italic">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="u" title="Underline">
+                                    <i class="fas fa-underline"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="s" title="Strikethrough">
+                                    <i class="fas fa-strikethrough"></i>
+                                </button>
+                                <div class="draft-tool-separator"></div>
+                                
+                                <!-- Links and Media -->
+                                <button class="draft-tool-btn" data-tag="url" title="Link">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="img" title="Image">
+                                    <i class="fas fa-image"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="color" title="Color">
+                                    <i class="fas fa-palette"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="size" title="Size">
+                                    <i class="fas fa-text-height"></i>
+                                </button>
+                                <div class="draft-tool-separator"></div>
+                                
+                                <!-- Code and Quotes -->
+                                <button class="draft-tool-btn" data-tag="code" title="Code">
+                                    <i class="fas fa-code"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="quote" title="Quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="list" title="List">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="spoiler" title="Spoiler">
+                                    <i class="fas fa-eye-slash"></i>
+                                </button>
+                                <div class="draft-tool-separator"></div>
+                                
+                                <!-- Alignment -->
+                                <button class="draft-tool-btn" data-tag="align" title="Align Left">
+                                    <i class="fas fa-align-left"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="center" title="Align Center">
+                                    <i class="fas fa-align-center"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="right" title="Align Right">
+                                    <i class="fas fa-align-right"></i>
+                                </button>
+                                <div class="draft-tool-separator"></div>
+                                
+                                <!-- Other -->
+                                <button class="draft-tool-btn" data-tag="hr" title="Horizontal Rule">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="table" title="Table">
+                                    <i class="fas fa-table"></i>
+                                </button>
+                                <button class="draft-tool-btn" data-tag="clear" title="Clear Formatting">
+                                    <i class="fas fa-eraser"></i>
+                                </button>
+                                <div class="draft-view-toggle">
+                                    <button type="button" class="draft-tool-btn draft-toggle-btn" id="draft-toggle-view-btn" title="Toggle Source/Formatted View">
+                                        <i class="fas fa-code"></i> Source
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Formatted view (contenteditable div) -->
+                            <div class="draft-content-textarea draft-content-formatted" id="draft-content-formatted"
+                                contenteditable="true" data-placeholder="{$lang->collaboration_draft_content_placeholder}"
+                                style="display: block;"></div>
+                            
+                            <!-- Source view (textarea) -->
+                            <textarea class="draft-content-textarea draft-content-source" id="draft-content-source"
+                                placeholder="{$lang->collaboration_draft_content_placeholder}" style="display: none;"></textarea>
+                        </div>
+                        
+                        <!-- Contributions Panel -->
+                        <div class="contributions-panel">
+                            <h4><i class="fas fa-users"></i> Contributions</h4>
+                            <div class="contributions-list" id="contributions-list">
+                                <div class="contributions-empty">No contributions yet. Start writing to see collaboration stats!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drafts List -->
+                <div class="draft-list-container" id="draft-list-container" style="display: none;">
+                    <div class="draft-list" id="draft-list">
+                        <div class="draft-loading">{$lang->collaboration_draft_loading}</div>
+                    </div>
+                </div>
+                
+                <!-- Edit Logs -->
+                <div class="edit-logs-container" id="edit-logs-container" style="display: none;">
+                    <div class="edit-logs-header">
+                        <h3><i class="fas fa-history"></i> Draft Edit History</h3>
+                        <div class="edit-logs-controls">
+                            <select id="edit-logs-draft-select" class="edit-logs-select">
+                                <option value="">Select a draft to view logs...</option>
+                            </select>
+                            <button id="refresh-edit-logs" class="refresh-btn" title="Refresh logs">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="edit-logs-content" id="edit-logs-content">
+                        <div class="edit-logs-welcome">
+                            <i class="fas fa-history"></i>
+                            <h4>Select a draft to view its edit history</h4>
+                            <p>See who made what changes and when</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Archive List -->
+                <div class="archive-list-container" id="archive-list-container" style="display: none;">
+                    <div class="archive-list" id="archive-list">
+                        <div class="archive-loading">Loading published drafts...</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="draft-sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-users"></i> Online Now</h3>
+                    <div class="online-users-list" id="online-users-list">
+                        <div class="loading-users">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-user-friends"></i> Collaborators</h3>
+                    <div class="collaborators-list" id="collaborators-list">
+                        <div class="loading-collaborators">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-info-circle"></i> Thread Info</h3>
+                    <div class="thread-info-panel">
+                        <div class="info-item">
+                            <strong>Thread:</strong> <a href="showthread.php?tid={$tid}"
+                                target="_blank">{$thread_subject}</a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Your Role:</strong> <span id="user-role">Loading...</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Messages:</strong> <span id="total-messages">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Floating Settings Icon -->
+    {$floating_settings_icon}
+
+    <!-- Off-Canvas Settings Sidebar -->
+    <div class="off-canvas-sidebar" id="off-canvas-sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-cog"></i> Settings</h3>
+            <button class="sidebar-close-btn" id="sidebar-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <div class="settings-section">
+                <h4><i class="fas fa-user-cog"></i> User Settings</h4>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="auto-save-setting">
+                        Auto-save drafts
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="notifications-setting">
+                        Enable notifications
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4><i class="fas fa-users-cog"></i> Draft Management</h4>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="allow-collaborators-publish">
+                        Allow collaborators to publish drafts
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="publish-as-author">
+                        Publish as author (not thread owner)
+                    </label>
+                    <small class="setting-note">When enabled, collaborators publish as themselves instead of thread owner</small>
+                </div>
+                <div class="setting-item">
+                    <label>Publishing Permissions:</label>
+                    <select id="publishing-permissions">
+                        <option value="all">All Collaborators</option>
+                        <option value="primary">Primary Contributors Only</option>
+                        <option value="collaborators">Specific Collaborators</option>
+                    </select>
+                </div>
+                <div class="setting-item" id="collaborator-permissions" style="display: none;">
+                    <label>Allowed Collaborators:</label>
+                    <div class="collaborator-checkboxes" id="collaborator-checkboxes">
+                        <!-- Collaborators will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <script src="{$mybb->asset_url}/inc/plugins/Thread_Collaboration/Assets/collaboration_draft.js"></script>
+    <script>
+        // Initialize draft system
+        const draftConfig = {
+            tid: {$tid},
+            currentUser: '{$current_user_js}',
+            currentUserId: {$current_user_id},
+            canManageSettings: {$can_manage_draft_settings}
+        };
+
+        if (typeof CollaborationDraft !== 'undefined') {
+            window.collaborationDraft = new CollaborationDraft(draftConfig);
+        }
+    </script>
+
+    {$footer}
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder" style="margin-bottom: 20px;">
+        <tr>
+            <td class="thead" colspan="2"><strong>Collaboration Settings</strong></td>
+        </tr>
+        <tr>
+            <td class="trow1" style="padding: 15px;">
+                <form method="post" action="usercp.php?action=collaboration_invitations">
+                    <input type="hidden" name="update_settings" value="1" />
+                    <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                        <tr>
+                            <td style="width: 30%;"><strong>Enable Collaboration Requests:</strong></td>
+                            <td style="width: 70%;">
+                                <select name="collaboration_requests_enabled" class="selectbox">
+                                    <option value="0" {$collaboration_requests_disabled}>Disabled</option>
+                                    <option value="1" {$collaboration_requests_enabled}>Enabled</option>
+                                </select>
+                                <br /><small>Allow users to request collaboration on your threads</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thread IDs (comma separated):</strong></td>
+                            <td>
+                                <input type="text" name="collaboration_thread_ids" value="{$collaboration_thread_ids}" class="textbox" style="width: 300px;" />
+                                <br /><small>Enter thread IDs separated by commas (e.g., 1,2,3). Leave empty or use 0 to allow requests on all threads. When enabled, requests are allowed on all threads by default.</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding-top: 15px;">
+                                <input type="submit" value="Save Settings" class="button" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td class="trow1" style="padding: 15px;">
+                <form method="post" action="usercp.php?action=collaboration_invitations">
+                    <input type="hidden" name="update_owner_icon" value="1" />
+                    <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                        <tr>
+                            <td style="width: 30%;"><strong>Custom Owner Icon:</strong></td>
+                            <td style="width: 70%;">
+                                <input type="text" name="owner_icon" value="{$owner_icon_value}" class="textbox" style="width: 200px;" placeholder="fas fa-crown" />
+                                <br /><small>CSS class for your custom owner icon (e.g., 'fas fa-crown', 'fas fa-star'). Leave empty to use the admin default.</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding-top: 15px;">
+                                <input type="submit" value="Save Owner Icon" class="button" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+        <tr id="postbit_role_display_section" style="display: {$has_multiple_roles_display};">
+            <td class="trow1" style="padding: 15px;">
+                <form method="post" action="usercp.php?action=collaboration_invitations">
+                    <input type="hidden" name="update_postbit_roles" value="1" />
+                    <table border="0" cellspacing="0" cellpadding="5" style="width: 100%;">
+                        <tr>
+                            <td style="width: 30%;"><strong>Postbit Role Display:</strong></td>
+                            <td style="width: 70%;">
+                                <label><input type="radio" name="show_all_roles" value="1" {$show_all_roles_checked} /> Show all my roles in postbit</label><br />
+                                <label><input type="radio" name="show_all_roles" value="0" {$show_selected_roles_checked} /> Show only selected roles in postbit</label>
+                            </td>
+                        </tr>
+                        <tr id="role_selection" style="display: {$role_selection_display};">
+                            <td style="width: 30%;"><strong>Select Roles to Display:</strong></td>
+                            <td style="width: 70%;">
+                                {$available_roles_checkboxes}
+                                <br /><small>Choose which roles you want to display in your postbit. Only selected roles will be shown.</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding-top: 15px;">
+                                <input type="submit" value="Save Role Display Settings" class="button" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+        <tr id="no_multiple_roles_message" style="display: {$no_multiple_roles_display};">
+            <td class="trow1" style="padding: 15px; text-align: center; color: #666;">
+                <em>{$no_multiple_roles_message}</em>
+            </td>
+        </tr>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postbitRoleSection = document.getElementById('postbit_role_display_section');
+            
+            // Only initialize role selection if the section is visible
+            if (postbitRoleSection && postbitRoleSection.style.display !== 'none') {
+                const showAllRadio = document.querySelector('input[name="show_all_roles"][value="1"]');
+                const showSelectedRadio = document.querySelector('input[name="show_all_roles"][value="0"]');
+                const roleSelectionRow = document.getElementById('role_selection');
+                
+                function toggleRoleSelection() {
+                    if (showSelectedRadio && showSelectedRadio.checked) {
+                        roleSelectionRow.style.display = 'table-row';
+                    } else {
+                        roleSelectionRow.style.display = 'none';
+                    }
+                }
+                
+                if (showAllRadio) showAllRadio.addEventListener('change', toggleRoleSelection);
+                if (showSelectedRadio) showSelectedRadio.addEventListener('change', toggleRoleSelection);
+                
+                // Initial state
+                toggleRoleSelection();
+            }
+        });
+        </script>
+    </table>
