@@ -20,7 +20,7 @@ Turns a thread into a shared workspace: the owner assigns roles such as Writer o
 - **Limits** — max collaborators per thread, max threads per user, max roles per user.
 - **PM notifications** — on invitation, on update, and on requests, with a customisable PM message template.
 - **Reversible core edits** via PluginLibrary `edit_core()` — `editpost.php`, `search.php`, `xmlhttp.php`, `inc/functions_post.php` — with *Apply core edits* / *Revert core edits* links in the plugin row after an upgrade.
-- 80+ registered templates, so the entire UI is themeable from the ACP.
+- 60 registered templates, so the entire UI is themeable from the ACP.
 
 ## Requirements
 
@@ -67,7 +67,7 @@ inc/plugins/Thread_Collaboration/Functions/         # 8 domain files
     post_functions.php          reputation_functions.php
     showthread_functions.php    usercp_functions.php
 inc/plugins/Thread_Collaboration/Assets/            # 9 JS files + collaboration.css
-inc/plugins/Thread_Collaboration/Templates/         # 79 templates
+inc/plugins/Thread_Collaboration/Templates/         # 60 templates
 inc/languages/english/thread_collaboration.lang.php        # 205 front-end phrases
 inc/languages/english/admin/thread_collaboration.lang.php  # 139 ACP phrases
 ```
